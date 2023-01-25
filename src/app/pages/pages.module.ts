@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
-import { ListComponent } from './list/list.component';
-import { RegisterComponent } from './register/register.component';
+import { ListaComponent } from './lista/lista.component';
+import { RegistroComponent } from './registro/registro.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
@@ -10,8 +10,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     HomeComponent,
-    ListComponent,
-    RegisterComponent
+    ListaComponent,
+    RegistroComponent
   ],
   imports: [
     CommonModule,
@@ -20,8 +20,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   exports: [
     HomeComponent,
-    ListComponent,
-    RegisterComponent
-  ],
+    ListaComponent,
+    RegistroComponent
+  ]
 })
 export class PagesModule { }

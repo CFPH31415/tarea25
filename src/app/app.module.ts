@@ -8,8 +8,8 @@ import { environment } from '../environments/environment';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { PagesModule } from './pages/pages.module';
 import { ComponentsModule } from './components/components.module';
+import { provideAuth,getAuth } from '@angular/fire/auth';
 
-//importacion para firbase
 
 
 @NgModule({
@@ -22,7 +22,8 @@ import { ComponentsModule } from './components/components.module';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     PagesModule,
-    ComponentsModule
+    ComponentsModule,
+    provideAuth(() => getAuth())
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,14 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './components/login/login.component';
+import { UsuarioComponent } from './components/usuario/usuario.component';
 import { HomeComponent } from './pages/home/home.component';
-import { ListComponent } from './pages/list/list.component';
-import { RegisterComponent } from './pages/register/register.component';
+import { ListaComponent } from './pages/lista/lista.component';
+import { RegistroComponent } from './pages/registro/registro.component';
+import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 
 const routes: Routes = [
-  {path:'', component:HomeComponent},
-  {path:'register', component:RegisterComponent},
-  {path:'list', component:ListComponent},
-  {path:'**', pathMatch:'full', redirectTo:''},
+
+  { path:'home', component:HomeComponent, ...canActivate(() => redirectUnauthorizedTo(['/login']))},
+  { path:'login', component:LoginComponent },
+  { path:'usuario', component:UsuarioComponent },
+  { path:'registro', component:RegistroComponent, ...canActivate(() => redirectUnauthorizedTo(['/login']))},
+  { path:'lista', component:ListaComponent, ...canActivate(() => redirectUnauthorizedTo(['/login'])) },
+  { path:'', redirectTo:'login', pathMatch:'full' }
+
 ];
 
 @NgModule({

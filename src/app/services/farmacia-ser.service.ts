@@ -1,31 +1,25 @@
 import { Injectable } from '@angular/core';
-import { collectionData, deleteDoc, Firestore } from '@angular/fire/firestore';
-import { addDoc, collection, doc } from 'firebase/firestore';
-import { Observable, Observer } from 'rxjs';
+import { collectionData, Firestore } from '@angular/fire/firestore';
+import { addDoc, collection, deleteDoc, doc } from 'firebase/firestore';
+import { Observable } from 'rxjs';
 import { Farmacia } from '../interfaces/interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class FarmaciaService {
+export class FarmaciaSerService {
 
-  constructor( private firestore:Firestore ) { }
-
-  addProduct(farmacia:Farmacia){
+  constructor( private firestore:Firestore) { }
+  addProduct(producto:Farmacia){
     const farmaciaRef = collection(this.firestore, 'farmacia');
-    return addDoc(farmaciaRef, farmacia)    
+    return addDoc(farmaciaRef, producto);
   }
-
-
-  getFacrmacia():Observable<Farmacia[]>{
+  getFarmacia():Observable<Farmacia[]>{
     const farmaciaRef = collection(this.firestore, 'farmacia');
     return collectionData(farmaciaRef, {idField:'id'}) as Observable<Farmacia[]>
   }
-
-
-  deletedFarmacia(farmacia:Farmacia){
+  deleteFarmacia(farmacia:Farmacia){
     const farmaciaRef = doc(this.firestore, `farmacia/${farmacia.id}`)
     return deleteDoc(farmaciaRef);
   }
-
 }
